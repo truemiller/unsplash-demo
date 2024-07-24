@@ -4,16 +4,10 @@ import { SearchParams } from "unsplash-js/dist/methods/search"
 
 import { unsplash } from "@/utils/unsplash"
 
-export const searchPhotos = async ({
-  query = "",
-  perPage = 12,
-  page = 1,
-}: SearchParams) => {
+export const searchPhotos = async ({ query = "" }: SearchParams) => {
   try {
     const { response } = await unsplash.search.getPhotos({
       query,
-      perPage,
-      page,
     })
     return response?.results ?? []
   } catch (error) {
