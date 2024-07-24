@@ -8,7 +8,7 @@ import {
 } from "react"
 import { Basic as BasicPhoto } from "unsplash-js/dist/methods/photos/types"
 
-import { unsplashServerApi } from "@/utils/unsplash"
+import { searchPhotos } from "@/actions/unsplash"
 
 import { SearchContext } from "./SearchProvider"
 
@@ -21,11 +21,10 @@ export const ResultsProvider = ({ children }: PropsWithChildren) => {
   const [photos, setPhotos] = useState<BasicPhoto[]>([])
 
   useEffect(() => {
-    unsplashServerApi.search.getPhotos({ query }).then(({ response }) => {
-      setPhotos(response?.results ?? [])
-    }),
-      [query]
-  })
+    searchPhotos(query).then((photos) => {
+      setPhotos(photos)
+    })
+  }, [query])
 
   return (
     <ResultsContext.Provider value={{ photos }}>
