@@ -1,4 +1,6 @@
-import { createContext, PropsWithChildren, useState } from "react"
+import { createContext, PropsWithChildren, useEffect, useState } from "react"
+
+import { useDebounce } from "@/hooks/useDebounce"
 
 export const SearchContext = createContext({
   query: "",
@@ -7,6 +9,13 @@ export const SearchContext = createContext({
 
 export const SearchProvider = ({ children }: PropsWithChildren) => {
   const [query, setQuery] = useState("")
+
+  //   TODO: Implement useDebounce, and call API with debounced query
+  const debouncedQuery = useDebounce(query, 500)
+
+  useEffect(() => {
+    setQuery(debouncedQuery)
+  }, [debouncedQuery, setQuery])
 
   return (
     <SearchContext.Provider value={{ query, setQuery }}>
