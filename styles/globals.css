@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body > main {
-  @apply flex flex-col items-center min-h-screen flex-grow py-8;
+  @apply flex flex-col items-center min-h-screen flex-grow py-8 gap-4;
 }

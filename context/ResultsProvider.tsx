@@ -21,8 +21,9 @@ export const ResultsProvider = ({ children }: PropsWithChildren) => {
   const [photos, setPhotos] = useState<BasicPhoto[]>([])
 
   useEffect(() => {
-    searchPhotos(query).then((photos) => {
-      setPhotos(photos)
+    searchPhotos({ query }).then((response) => {
+      if (!response) return
+      setPhotos(response)
     })
   }, [query])
 

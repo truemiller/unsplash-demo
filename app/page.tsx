@@ -1,3 +1,4 @@
+import { Results } from "@/components/Results"
 import { Search } from "@/components/Search"
 
 export default function HomePage() {
@@ -5,7 +6,7 @@ export default function HomePage() {
     <main>
       <Search />
       <div id="toolbar" />
-      <section className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3"></section>
+      <Results />
       <div id="#pagination" />
     </main>
   )
