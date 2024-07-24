@@ -1,3 +1,4 @@
+"use client"
 import {
   createContext,
   PropsWithChildren,
@@ -5,21 +6,26 @@ import {
   useEffect,
   useState,
 } from "react"
+import { Basic as BasicPhoto } from "unsplash-js/dist/methods/photos/types"
+
+import { unsplashServerApi } from "@/utils/unsplash"
 
 import { SearchContext } from "./SearchProvider"
 
-type Photo = any
-
 export const ResultsContext = createContext({
-  photos: [] as Photo[],
+  photos: [] as BasicPhoto[],
 })
 
 export const ResultsProvider = ({ children }: PropsWithChildren) => {
   const { debouncedQuery: query } = useContext(SearchContext)
+  const [photos, setPhotos] = useState<BasicPhoto[]>([])
 
-  const [photos, setPhotos] = useState<Photo[]>([])
-
-  useEffect(() => {}, [query])
+  useEffect(() => {
+    unsplashServerApi.search.getPhotos({ query }).then(({ response }) => {
+      setPhotos(response?.results ?? [])
+    }),
+      [query]
+  })
 
   return (
     <ResultsContext.Provider value={{ photos }}>
