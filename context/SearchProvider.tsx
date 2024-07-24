@@ -1,3 +1,4 @@
+"use client"
 import { createContext, PropsWithChildren, useState } from "react"
 
 export const SearchContext = createContext({

@@ -1,3 +1,4 @@
+"use client"
 import { useSearch } from "@/hooks/useSearch"
 
 export const Search = () => {
