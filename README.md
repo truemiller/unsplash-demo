@@ -3,7 +3,7 @@ Unsplash demo
 ## Getting Started
 
 Install dependencies:
-```
+```bash
 npm i -g yarn #if you don't already have yarn installed
 yarn
 ```
