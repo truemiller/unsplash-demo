@@ -1,24 +1,21 @@
-import { createContext, PropsWithChildren, useEffect, useState } from "react"
-
-import { useDebounce } from "@/hooks/useDebounce"
+import { createContext, PropsWithChildren, useState } from "react"
 
 export const SearchContext = createContext({
   query: "",
+  debouncedQuery: "",
   setQuery: (query: string) => {},
 })
+
+const DEBOUNCE_DELAY = 300
 
 export const SearchProvider = ({ children }: PropsWithChildren) => {
   const [query, setQuery] = useState("")
 
-  //   TODO: Implement useDebounce, and call API with debounced query
-  const debouncedQuery = useDebounce(query, 500)
-
-  useEffect(() => {
-    setQuery(debouncedQuery)
-  }, [debouncedQuery, setQuery])
+  // TODO: debounce the query
+  const debouncedQuery = query
 
   return (
-    <SearchContext.Provider value={{ query, setQuery }}>
+    <SearchContext.Provider value={{ query, setQuery, debouncedQuery }}>
       {children}
     </SearchContext.Provider>
   )
