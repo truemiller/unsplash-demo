@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-main {
+body > main {
   @apply flex flex-col items-center min-h-screen flex-grow py-8;
 }
