@@ -8,5 +8,14 @@ export const Search = () => {
     setQuery(event.target.value)
   }
 
-  return <input type="text" value={query} onChange={handleChange} />
+  return (
+    <input
+      type="text"
+      value={query}
+      onChange={handleChange}
+      onSubmit={handleChange}
+      className="rounded-md border border-gray-300 p-2"
+      placeholder="Search ..."
+    />
+  )
 }
